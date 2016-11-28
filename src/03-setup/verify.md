@@ -30,7 +30,7 @@ crw-rw-r-- 1 root uucp 189, 262 Oct 27 00:00 /dev/bus/usb/003/004
 The group should be `uucp`. If it's not ... then check your [udev rules] and try
 re-loading them with:
 
-[udev rules]: 01-installation-instructions/linux.html#udev%20rules
+[udev rules]: 03-setup/linux.html#udev%20rules
 
 ```
 $ sudo udevadm control --reload-rules
@@ -76,6 +76,12 @@ $ openocd -s C:\OpenOCD\share\scripts -f interface/stlink-v2-1.cfg -f target/stm
 
 > **NOTE** Windows users: `C:\OpenOCD` is the directory where you installed
 > OpenOCD to.
+
+> **IMPORTANT** There is more than one hardware revision of the
+> STM32F3DISCOVERY board. For older revisions, you'll need to change the
+> "interface" argument to `-f interface/stlink-v2.cfg` (note: no `-1` at the
+> end). Alternatively, older revisions can use `-f board/stm32f3discovery.cfg`
+> instead of `-f interface/stlink-v2-1.cfg -f target/stm32f3x.cfg`.
 
 You should see output like this:
 

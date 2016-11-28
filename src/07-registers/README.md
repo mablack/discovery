@@ -1,11 +1,9 @@
 # Registers
 
-> **TODO** IMPORTANT! Peripheral memory always starts with 0x4.
-
 It's time to explore what the `Led` API does under the hood.
 
 In a nutshell, it just writes to some special memory regions. Go into the
-`06-registers` directory and let's run the starter code.
+`07-registers` directory and let's run the starter code.
 
 ``` rust
 #![no_std]
@@ -13,8 +11,8 @@ In a nutshell, it just writes to some special memory regions. Go into the
 
 extern crate pg;
 
-#[export_name = "main"]
 #[inline(never)]
+#[no_mangle]
 pub fn main() -> ! {
     unsafe {
         // A magic address!

@@ -1,5 +1,15 @@
 # Hello, world!
 
+> **DISCLAIMER** Several readers have reported that the "solder bridge" SB10 on
+> the STM32F3DISCOVERY, which is required to use the ITM and the `iprint!`
+> macros shown below, is **not** soldered even though the [User Manual][] (page
+> 21) says that it **should be**. TL;DR You'll have to **solder** the solder
+> bridge SB10, if it's not, to be able to use these macros. Note that you can
+> follow the rest of the material if SB10 is not soldered but the `iprint!`
+> macros will have no effect.
+
+[User Manual]: http://www.st.com/resource/en/user_manual/dm00063382.pdf
+
 (Just a little more of helpful "magic" before we start doing low level stuff.)
 
 Blinking an LED is like the "Hello, world" of the embedded world.
@@ -17,8 +27,8 @@ Go to the `05-hello-world` directory. There's some starter code in it:
 #[macro_use]
 extern crate pg;
 
-#[export_name = "main"]
 #[inline(never)]
+#[no_mangle]
 pub fn main() -> ! {
     iprintln!("Hello, world!");
 
@@ -47,7 +57,7 @@ We'll use the `itmdump` program to perform the parsing "on the fly".
 You should have already installed the `itmdump` program during the [installation
 chapter].
 
-[installation chapter]: 02-setup/README.html#itmdump
+[installation chapter]: 03-setup/README.html#itmdump
 
 In a new terminal, run this command inside the `/tmp` directory, if you are
 using a *nix OS, or from within the `%TEMP%` directory, if you are running
